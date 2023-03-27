@@ -1,0 +1,15 @@
+[features]
+seeds = true
+skip-lint = false
+[programs.devnet]
+test_01 = "7Hs1xi3oK5esA1UjmbTf6AwkEhZPtj4cx75M9awCbMzW"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "Devnet"
+wallet = "/home/adrou/Desktop/solana_information/solana_keypair/id.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
