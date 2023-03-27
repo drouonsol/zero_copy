@@ -10,13 +10,13 @@ pub mod test_01 {
     use super::*;
 
     pub fn create_account(ctx: Context<CreateAccount>) -> Result<()> {
-        let test = ctx.accounts.data_holder.load_mut()?.long_string[2];
+        let test = ctx.accounts.data_holder.load_mut()?.walletlist[2];
         msg!("{:?}", test);
         Ok(())
     }
 
     pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
-        let number = ctx.accounts.data_holder.load_mut()?.long_string[1];
+        let number = ctx.accounts.data_holder.load_mut()?.walletlist[1];
         msg!("Number: {:?}", number);
         // ctx.accounts.data_holder.load_mut()?.listofusers[1] = ctx.accounts.signer.key();
         // msg!("Array: {:?}", ctx.accounts.data_holder.load_mut()?.listofusers.copy_from_slice(&[ctx.accounts.data_holder.load_mut()?.listofusers[1]]));
@@ -54,5 +54,6 @@ pub struct Initialize<'info> {
  #[repr(C)]
  pub struct DataHolder {
      // 40952 = 40960 - 8 (account desciminator)
-     pub long_string: [u8; 10228],
+     pub walletlist: [Pubkey; 319],
+     pub extra_numbers: [i8; 24]
  }
