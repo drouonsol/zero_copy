@@ -20,7 +20,7 @@ describe("test_01", () => {
 
   it("Is initialized!", async () => {
     const [StatePda] = await anchor.web3.PublicKey.findProgramAddress(
-      [ Buffer.from("data_holder_drou"), wallet.publicKey.toBuffer()],
+      [ Buffer.from("data_holder_drou_v10"), wallet.publicKey.toBuffer()],
       program.programId
     )
  

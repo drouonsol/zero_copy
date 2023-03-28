@@ -24,12 +24,21 @@ pub mod test_01 {
     }
 }
 
+#[derive(Accounts)] 
+pub struct CreateCopiedAccount<'info> {
+    #[account(mut)]
+    pub signer: Signer<'info>,
+    #[account(address = system_program::ID)]
+    pub system_program: Program<'info, System>,
+}
+
+
 
 #[derive(Accounts)] 
 pub struct CreateAccount<'info> {
     #[account(
         init_if_needed, 
-        seeds = [b"data_holder_drou", 
+        seeds = [b"data_holder_drou_v10", 
         signer.key().as_ref()], 
         bump, 
         payer=signer, 
@@ -41,12 +50,18 @@ pub struct CreateAccount<'info> {
     pub system_program: Program<'info, System>,
 }
 
+
 #[derive(Accounts)]
 pub struct Initialize<'info> {
     #[account(mut)]
     pub data_holder: AccountLoader<'info, DataHolder>,
     #[account(mut)]
     pub signer: Signer<'info>,
+}
+
+#[account]
+pub struct StartHolder {
+    pub walletlist: [Pubkey; 20]
 }
 
 
@@ -57,3 +72,6 @@ pub struct Initialize<'info> {
      pub walletlist: [Pubkey; 319],
      pub extra_numbers: [i8; 24]
  }
+
+
+
